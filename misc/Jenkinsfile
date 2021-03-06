@@ -1,11 +1,14 @@
 node {
         // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
-        echo "Docker test"
-        dockerfile {
-            filename 'Dockerfile'
-            dir 'build'
-            label 'my-defined-label'
-            additionalBuildArgs  '--build-arg version=1.0.2'
-            args '-v /tmp:/tmp'
+        stage("build")
+        {
+                echo "Docker test"
+                dockerfile {
+                    filename 'Dockerfile'
+                    dir 'build'
+                    label 'my-defined-label'
+                    additionalBuildArgs  '--build-arg version=1.0.2'
+                    args '-v /tmp:/tmp'
+                }
         }
     }
