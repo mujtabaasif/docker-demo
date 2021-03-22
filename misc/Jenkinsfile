@@ -3,20 +3,9 @@ pipeline {
 	stages {
 		stage ('build') {
 			echo "Docker test"
-                        dockerfile {
-                            filename 'Dockerfile'
-                            dir 'build'
-                            label 'my-defined-label'
-                            additionalBuildArgs  '--build-arg version=1.0.2'
-                            args '-v /tmp:/tmp'
-                        }
 		}
-		stage ('test: integration-&-quality') {
-			docker {
-                                image 'maven:3-alpine'
-                                label 'my-defined-label'
-                                args  '-v /tmp:/tmp'
-                        }
+		stage ('test') {
+			echo "Testing stage"
 		}
 	}
 }
