@@ -1,4 +1,4 @@
-node {
+pipeline {
         // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
         stage("build")
         {
@@ -11,4 +11,14 @@ node {
                     args '-v /tmp:/tmp'
                 }
         }
-    }
+        stage("test")
+        {
+                agent {
+                        docker {
+                                image 'maven:3-alpine'
+                                label 'my-defined-label'
+                                args  '-v /tmp:/tmp'
+                        }
+                }
+        }
+}
