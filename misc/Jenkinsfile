@@ -1,27 +1,9 @@
 pipeline {
-    agent any{
-    stages {
-        stage('build') {
-            steps {
-                
+    agent any{  
                 docker {
                     image 'maven:3-alpine'
                     label 'my-defined-label'
                     args  '-v /tmp:/tmp'
                 }
-                }
-            }
-        }
     }
-    post {
-        always {
-            echo 'This will always run'
-        }
-        success {
-            echo 'This will run only if successful'
-        }
-        failure {
-            echo 'This will run only if failed'
-        }
- }
 }
