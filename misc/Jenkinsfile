@@ -1,8 +1,9 @@
 pipeline {
+    agent any{
     stages {
         stage('build') {
             steps {
-                agent any{
+                
                 docker {
                     image 'maven:3-alpine'
                     label 'my-defined-label'
